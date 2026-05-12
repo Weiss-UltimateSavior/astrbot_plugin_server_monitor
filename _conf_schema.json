@@ -1,0 +1,76 @@
+{
+  "servers": {
+    "description": "服务器列表配置（JSON格式）",
+    "type": "string",
+    "hint": "JSON数组格式，每个服务器包含: name(名称), ip(IP地址), announcement(在线公告), expiry_date(到期日期，格式YYYY-MM-DD)。示例: [{\"name\":\"主服务器\",\"ip\":\"192.168.1.1\",\"announcement\":\"欢迎访问主服务器！\",\"expiry_date\":\"2025-12-31\"}]",
+    "default": "[]"
+  },
+  "target_groups": {
+    "description": "接收通知的群组列表（重要：格式必须正确）",
+    "type": "list",
+    "hint": "格式: 【平台名称:任意:群号】，例如: aiocqhttp:GroupMessage:123456。插件会自动从指令事件中学习正确的消息链路，你只需保证最后的群号正确即可。",
+    "default": []
+  },
+  "admin_users": {
+    "description": "授权使用插件指令的用户ID白名单",
+    "type": "list",
+    "hint": "只有在列表中的用户才能使用 /服务器状态 /ping /添加服务器 /删除服务器 等指令。用户ID取决于消息平台（QQ号为数字字符串、Telegram为数字ID等）。留空则允许所有用户使用。",
+    "default": []
+  },
+  "ping_interval": {
+    "description": "Ping检测间隔（秒）",
+    "type": "int",
+    "hint": "每隔多少秒检测一次服务器状态，默认10秒",
+    "min": 5,
+    "max": 300,
+    "default": 10
+  },
+  "expiry_notify_days": {
+    "description": "到期提前通知天数",
+    "type": "int",
+    "hint": "在服务器到期前多少天发送提醒通知，默认1天",
+    "min": 1,
+    "max": 30,
+    "default": 1
+  },
+  "offline_notify_enabled": {
+    "description": "服务器离线时是否发送通知",
+    "type": "bool",
+    "hint": "开启后当服务器从在线变为离线时会发送通知",
+    "default": true
+  },
+  "online_notify_enabled": {
+    "description": "服务器恢复在线时是否发送通知",
+    "type": "bool",
+    "hint": "开启后当服务器从离线恢复在线时会发送通知",
+    "default": true
+  },
+  "daily_report_time": {
+    "description": "每日状态报告时间",
+    "type": "string",
+    "hint": "每天发送服务器状态汇总的时间，格式HH:MM，留空则不发送每日报告",
+    "default": "08:00"
+  },
+  "ping_timeout": {
+    "description": "Ping超时时间（秒）",
+    "type": "int",
+    "hint": "Ping请求的超时时间，默认3秒",
+    "min": 1,
+    "max": 10,
+    "default": 3
+  },
+  "web_checks": {
+    "description": "Web服务健康检查列表（JSON格式）",
+    "type": "string",
+    "hint": "JSON数组格式，每项包含: name(名称), url(检查地址), method(HTTP方法，默认GET), expected_code(期望状态码，默认200), timeout(超时秒数，默认5), host_header(可选，自定义Host头), must_contain(可选，响应体应包含的字符串), verify_ssl(是否验证SSL，默认true), allow_redirects(是否跟随重定向，默认true)。示例: [{\"name\":\"官网首页\",\"url\":\"https://example.com\",\"expected_code\":200}]",
+    "default": "[]"
+  },
+  "max_concurrent_checks": {
+    "description": "最大并发检查数",
+    "type": "int",
+    "hint": "同时发起的HTTP检查请求最大数量，默认5",
+    "min": 1,
+    "max": 20,
+    "default": 5
+  }
+}

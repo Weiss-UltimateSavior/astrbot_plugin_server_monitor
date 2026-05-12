@@ -1,0 +1,6 @@
+name: astrbot_plugin_server_monitor
+display_name: 服务器状态监控
+desc: 多服务器 Ping 检测、多Web 服务健康检查、到期/异常/掉线 提醒、每日状态报告。
+version: 1.1.0
+author: 雷诺哈特
+repo: https://github.com/WeissX/astrbot_plugin_server_monitor
